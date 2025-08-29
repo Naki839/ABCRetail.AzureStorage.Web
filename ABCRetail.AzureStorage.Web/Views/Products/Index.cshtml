@@ -1,0 +1,42 @@
+﻿@model List<Azure.Data.Tables.TableEntity>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Add New Product</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    @if (product.ContainsKey("ImageUrl") && !string.IsNullOrEmpty(product["ImageUrl"]?.ToString()))
+                    {
+                        <img src="@product["ImageUrl"]" width="100" />
+                    }
+                </td>
+                <td>@product["Name"]</td>
+                <td>@product["Description"]</td>
+                <td>@product["Price"]</td>
+                <td>
+                    <a asp-action="Delete" asp-route-rowKey="@product.RowKey" class="btn btn-danger" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

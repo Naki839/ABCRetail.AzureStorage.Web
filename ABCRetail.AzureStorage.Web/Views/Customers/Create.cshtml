@@ -1,0 +1,34 @@
+﻿<h2 class="text-center mb-4">🌸 Add a New Customer 🌸</h2>
+
+<form id="customerForm" asp-action="Create" method="post" class="mx-auto" style="max-width: 400px;">
+    <div class="mb-3">
+        <label>First Name</label>
+        <input type="text" name="firstName" class="form-control" placeholder="Enter first name" required />
+    </div>
+    <div class="mb-3">
+        <label>Last Name</label>
+        <input type="text" name="lastName" class="form-control" placeholder="Enter last name" />
+    </div>
+    <div class="mb-3">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Enter email" required />
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-success" id="submitBtn">Save 💚</button>
+    </div>
+
+    <!-- Cute loading message -->
+    <div id="loadingMessage" class="text-center mt-3" style="display:none; color:#FF69B4;">
+        💌 Adding your lovely customer… Please wait!
+    </div>
+</form>
+
+<script>
+    // Show loading message when form is submitted
+    document.getElementById('customerForm').addEventListener('submit', function () {
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('loadingMessage').style.display = 'block';
+    });
+</script>
+

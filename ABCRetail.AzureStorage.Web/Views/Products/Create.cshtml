@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Add Product";
+}
+
+<h2 class="text-center mb-4">🍭 Add a New Product 🍭</h2>
+
+<form id="productForm" asp-action="Create" method="post" enctype="multipart/form-data" class="mx-auto" style="max-width: 400px;">
+    <div class="mb-3">
+        <label>Name</label>
+        <input type="text" name="name" class="form-control" placeholder="Enter product name" required />
+    </div>
+    <div class="mb-3">
+        <label>Description</label>
+        <textarea name="description" class="form-control" placeholder="Enter product description"></textarea>
+    </div>
+    <div class="mb-3">
+        <label>Price</label>
+        <input type="number" name="price" class="form-control" step="0.01" placeholder="Enter price" required />
+    </div>
+    <div class="mb-3">
+        <label>Image</label>
+        <input type="file" name="image" class="form-control" />
+    </div>
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-success" id="submitBtn">Save 💚</button>
+    </div>
+
+    <!-- Cute loading message -->
+    <div id="loadingMessage" class="text-center mt-3" style="display:none; color:#FF69B4;">
+        💌 Your product is being uploaded and processed… Please wait!
+    </div>
+</form>
+
+<script>
+    // Show loading message when form is submitted
+    document.getElementById('productForm').addEventListener('submit', function () {
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('loadingMessage').style.display = 'block';
+    });
+</script>
+
